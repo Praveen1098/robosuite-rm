@@ -269,6 +269,7 @@ class PickPlace(ManipulationEnv):
             renderer_config=renderer_config,
         )
 
+
     def reward(self, action=None):
         """
         Reward function for the task.

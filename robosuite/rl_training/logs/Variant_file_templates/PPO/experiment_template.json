@@ -1,0 +1,47 @@
+{
+    "logdir": "../../../logs/tmp/PPO",
+    "algorithm": "PPO",
+    "replay_buffer_size": 1000000,
+    "num_steps": 4000000,
+    "seed": 17,
+    "stopping_criteria": "RewardThreshold",
+    "has_stop_on_reward_threshold": true,
+    "has_stop_on_no_model_improvement": false,
+    "has_checkpoint_callback": false,
+    "eval_freq": 30000,
+    "n_envs": 16,
+    "multiproc": true,
+    "n_eval_episodes": 25,
+    "reward_threshold": 490.0,
+    "algorithm_kwargs": {
+      "learning_rate": 3e-4,
+      "n_steps": 2048,
+      "batch_size": 64,
+      "gamma": 0.99,
+      "ent_coef": 0.0,
+      "vf_coef": 0.5,
+      "max_grad_norm": 0.5,
+      "gae_lambda": 0.95,
+      "clip_range": 0.2,
+      "verbose": 1
+    },
+    "robosuite_env_kwargs": {
+      "control_freq": 20,
+      "controller": "OSC_POSE",
+      "env_name": "PickPlace",
+      "hard_reset": false,
+      "horizon": 1000,
+      "ignore_done": false,
+      "reward_shaping": true,
+      "single_object_mode": 1,
+      "object_type": "milk",
+      "has_renderer": false,
+      "has_offscreen_renderer": false,
+      "use_object_obs": true,
+      "use_camera_obs": false,
+      "reward_scale": 1.0,
+      "robots": [
+        "Kinova3"
+      ]
+    }
+  }

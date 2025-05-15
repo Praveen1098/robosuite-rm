@@ -1,0 +1,98 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pick_and_place_sb3"
+authors = [
+    {name = "Charles Meehan", email = "cmeehan2@umd.edu"}
+]
+description = "A template for RL training of robotic skills using robosuite and Stable Baselines3"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+version = "0.0.1"
+
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+]
+
+dependencies = [
+  "mujoco",
+  "robosuite",
+  "stable_baselines3[extra]",
+  "optuna",
+  "h5py",
+  "imageio[ffmpeg]",
+]
+
+[project.optional-dependencies]
+dev = [
+  "ipython",
+  "ruff",
+  "mypy",
+  "pre-commit",
+  "hatch",
+  "pytest",
+  "pytest-cov",
+  "pytest-xdist"
+]
+typing = []
+docs = ["Sphinx", "furo"]
+extras = []
+
+[tool.hatch.build]
+packages = ["src/pick_and_place_sb3"]
+
+[tool.hatch.envs.default]
+python = "3.10"
+pre-install-commands = ["pip install --upgrade pip"]
+
+[tool.hatch.envs.dev]
+features = ["dev", "extras"]
+post-install-commands = [
+  "pre-commit install",
+  "mypy --install-types --non-interactive . || true",
+]
+
+[tool.ruff]
+src = ["src"]
+lint.select = [
+  "F",   # pyflakes
+  "E",   # pycodestyle
+  "W",   # pycodestyle
+  "C90", # mccabe
+  "I",   # isort
+  "N",   # pep8-naming
+  "D",   # pydocstyle
+  "B",   # bugbear
+  "UP",  # pyupgrade
+]
+lint.ignore = [
+  "D1",   # missing docstrings
+  "B905", # zip w/o explicit `strict=`
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.mypy]
+plugins = "numpy.typing.mypy_plugin"
+
+[[tool.mypy.overrides]]
+module = ["pick_and_place_sb3.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests/"]
+addopts = [
+  "--import-mode=importlib",
+  "--cov=src/pick_and_place_sb3",
+  "--cov-report=term",
+  "--cov-report=xml:tests/coverage.xml",
+  "--numprocesses=auto",
+]
+
+[tool.coverage.run]
+data_file = "tests/.coverage"
