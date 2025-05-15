@@ -1,7 +1,0 @@
-mujoco
-robosuite
-stable_baselines3[extra]
-optuna
-h5py
-imageio[ffmpeg]
-typeguard
