@@ -15,3 +15,12 @@ robosuite-models==1.0.0
 
 # for USD export and rendering
 usd-core
+
+# stable baselines for rl training
+stable_baselines3[extra]
+
+optuna
+
+imageio[ffmpeg]
+
+typeguard
